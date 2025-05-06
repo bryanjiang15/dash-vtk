@@ -7,6 +7,8 @@ from .GeometryRepresentation import GeometryRepresentation
 from .GlyphRepresentation import GlyphRepresentation
 from .ImageData import ImageData
 from .Mesh import Mesh
+from .Model import Model
+from .Pick import Pick
 from .PointCloudRepresentation import PointCloudRepresentation
 from .PointData import PointData
 from .PolyData import PolyData
@@ -29,6 +31,8 @@ __all__ = [
     "GlyphRepresentation",
     "ImageData",
     "Mesh",
+    "Model",
+    "Pick",
     "PointCloudRepresentation",
     "PointData",
     "PolyData",

@@ -1,6 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class View(Component):
@@ -11,6 +26,7 @@ It takes the following set of properties:
   - `cameraPosition`: [0, 0, 1]
   - `cameraViewUp`: [0, 1, 0]
   - `cameraParallelProjection`: false
+  - `showOrientationAxes`: true
 
 Keyword arguments:
 
@@ -42,6 +58,9 @@ Keyword arguments:
     is clicked. This contains the picking info describing the object
     being clicked on.
 
+- focalPoint (list; default [0, 0, 0]):
+    Initial camera focal point from an object in [0,0,0].
+
 - hoverInfo (dict; optional):
     Read-only prop. To use this, make sure that `pickingModes`
     contains `hover`. This prop is updated when an element in the map
@@ -55,29 +74,49 @@ Keyword arguments:
     List of picking listeners to bind. The supported values are
     `click` and `hover`. By default it is disabled (empty array).
 
-- style (dict; default {  width: '100%',  height: '100%',}):
-    Allow user to override the default View style { width: '100%',
-    height: '100%' }.
+- showOrientationAxes (boolean; default True):
+    Show/Hide orientation axes.
 
 - triggerRender (number; default 0):
     Property use to trigger a render when changing.
 
 - triggerResetCamera (number; default 0):
     Property use to trigger a resetCamera when changing."""
-    @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, style=Component.UNDEFINED, className=Component.UNDEFINED, background=Component.UNDEFINED, interactorSettings=Component.UNDEFINED, cameraPosition=Component.UNDEFINED, cameraViewUp=Component.UNDEFINED, cameraParallelProjection=Component.UNDEFINED, triggerRender=Component.UNDEFINED, triggerResetCamera=Component.UNDEFINED, pickingModes=Component.UNDEFINED, clickInfo=Component.UNDEFINED, hoverInfo=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'background', 'cameraParallelProjection', 'cameraPosition', 'cameraViewUp', 'className', 'clickInfo', 'hoverInfo', 'interactorSettings', 'pickingModes', 'style', 'triggerRender', 'triggerResetCamera']
-        self._type = 'View'
-        self._namespace = 'dash_vtk'
+    _children_props = []
+    _base_nodes = ['children']
+    _namespace = 'dash_vtk'
+    _type = 'View'
+
+
+    def __init__(
+        self,
+        children: typing.Optional[ComponentType] = None,
+        id: typing.Optional[typing.Union[str, dict]] = None,
+        style: typing.Optional[typing.Any] = None,
+        className: typing.Optional[str] = None,
+        background: typing.Optional[typing.Sequence] = None,
+        interactorSettings: typing.Optional[typing.Sequence] = None,
+        cameraPosition: typing.Optional[typing.Sequence] = None,
+        cameraViewUp: typing.Optional[typing.Sequence] = None,
+        cameraParallelProjection: typing.Optional[bool] = None,
+        focalPoint: typing.Optional[typing.Sequence] = None,
+        triggerRender: typing.Optional[NumberType] = None,
+        triggerResetCamera: typing.Optional[NumberType] = None,
+        pickingModes: typing.Optional[typing.Sequence[str]] = None,
+        clickInfo: typing.Optional[dict] = None,
+        hoverInfo: typing.Optional[dict] = None,
+        showOrientationAxes: typing.Optional[bool] = None,
+        **kwargs
+    ):
+        self._prop_names = ['children', 'id', 'background', 'cameraParallelProjection', 'cameraPosition', 'cameraViewUp', 'className', 'clickInfo', 'focalPoint', 'hoverInfo', 'interactorSettings', 'pickingModes', 'showOrientationAxes', 'style', 'triggerRender', 'triggerResetCamera']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'background', 'cameraParallelProjection', 'cameraPosition', 'cameraViewUp', 'className', 'clickInfo', 'hoverInfo', 'interactorSettings', 'pickingModes', 'style', 'triggerRender', 'triggerResetCamera']
+        self.available_properties = ['children', 'id', 'background', 'cameraParallelProjection', 'cameraPosition', 'cameraViewUp', 'className', 'clickInfo', 'focalPoint', 'hoverInfo', 'interactorSettings', 'pickingModes', 'showOrientationAxes', 'style', 'triggerRender', 'triggerResetCamera']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
-        _locals.update(kwargs)  # For wildcard attrs
+        _locals.update(kwargs)  # For wildcard attrs and excess named props
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
-        for k in []:
-            if k not in args:
-                raise TypeError(
-                    'Required argument `' + k + '` was not specified.')
+
         super(View, self).__init__(children=children, **args)
+
+setattr(View, "__init__", _explicitize_args(View.__init__))

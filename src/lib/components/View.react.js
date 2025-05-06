@@ -1,7 +1,8 @@
 /* eslint-disable no-magic-numbers */
-import React from 'react';
+import React, {useRef, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import { View as VtkItem } from '../AsyncReactVTK';
+//import {View as VtkItem} from 'react-vtk-js';
 
 /**
  * View is responsible to render vtk.js data.
@@ -13,7 +14,31 @@ import { View as VtkItem } from '../AsyncReactVTK';
  *   - `showOrientationAxes`: true
  */
 export default function View(props) {
-  return <React.Suspense fallback={null}><VtkItem {...props} /></React.Suspense>;
+  const viewRef = useRef();
+  const [vtkCamera, setVtkCamera] = useState(null);
+
+  useEffect(() => {
+    const initializeCamera = async () => {
+      while (!viewRef.current) {
+        await new Promise(resolve => setTimeout(resolve, 50)); // Wait for 50ms
+      }
+
+      const camera = viewRef.current.camera;
+      setVtkCamera(camera);
+
+      if (props.focalPoint && camera) {
+        camera.setFocalPoint(...props.focalPoint);
+        // Trigger a render
+        const renderWindow = viewRef.current.renderWindow;
+        
+        renderWindow.render();
+      }
+    };
+
+    initializeCamera();
+  }, [props.focalPoint]);
+
+  return <React.Suspense fallback={null}><VtkItem {...props} ref={viewRef}/></React.Suspense>;
 };
 
 View.defaultProps = {
@@ -27,6 +52,7 @@ View.defaultProps = {
   cameraPosition: [0, 0, 1],
   cameraViewUp: [0, 1, 0],
   cameraParallelProjection: false,
+  focalPoint: [0, 0, 0],
   interactorSettings: [
     {
       button: 1,
@@ -107,6 +133,11 @@ View.propTypes = {
    * Use parallel projection (default: false)
    */
   cameraParallelProjection: PropTypes.bool,
+
+  /**
+   * Initial camera focal point from an object in [0,0,0]
+   */
+  focalPoint: PropTypes.array,
 
   /**
    * Property use to trigger a render when changing.

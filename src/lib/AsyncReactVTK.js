@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy, forwardRef } from 'react';
 
 /**
  * fakeModules: We need to trick React.lazy into thinking we are 
@@ -10,7 +10,8 @@ const asyncComponentBuilder = name => async () => {
     const ReactVTK = await AsyncReactVTK;
 
     const reactComponent = ReactVTK.default[name];
-    const fakeModule = { default: reactComponent };
+    //const fakeModule = { default: reactComponent };
+    const fakeModule = { default: forwardRef((props, ref) => React.createElement(reactComponent, { ...props, ref })) };
     return fakeModule;
 }
 

@@ -1,6 +1,21 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+import typing  # noqa: F401
+from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
+
+ComponentType = typing.Union[
+    str,
+    int,
+    float,
+    Component,
+    None,
+    typing.Sequence[typing.Union[str, int, float, Component, None]],
+]
+
+NumberType = typing.Union[
+    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
+]
 
 
 class SliceRepresentation(Component):
@@ -50,20 +65,38 @@ Keyword arguments:
 
 - zSlice (number; optional):
     index of the slice along z."""
-    @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, mapper=Component.UNDEFINED, actor=Component.UNDEFINED, property=Component.UNDEFINED, colorMapPreset=Component.UNDEFINED, colorDataRange=Component.UNDEFINED, iSlice=Component.UNDEFINED, jSlice=Component.UNDEFINED, kSlice=Component.UNDEFINED, xSlice=Component.UNDEFINED, ySlice=Component.UNDEFINED, zSlice=Component.UNDEFINED, **kwargs):
+    _children_props = []
+    _base_nodes = ['children']
+    _namespace = 'dash_vtk'
+    _type = 'SliceRepresentation'
+
+
+    def __init__(
+        self,
+        children: typing.Optional[ComponentType] = None,
+        id: typing.Optional[typing.Union[str, dict]] = None,
+        mapper: typing.Optional[dict] = None,
+        actor: typing.Optional[dict] = None,
+        property: typing.Optional[dict] = None,
+        colorMapPreset: typing.Optional[str] = None,
+        colorDataRange: typing.Optional[typing.Union[typing.Sequence[NumberType], str]] = None,
+        iSlice: typing.Optional[NumberType] = None,
+        jSlice: typing.Optional[NumberType] = None,
+        kSlice: typing.Optional[NumberType] = None,
+        xSlice: typing.Optional[NumberType] = None,
+        ySlice: typing.Optional[NumberType] = None,
+        zSlice: typing.Optional[NumberType] = None,
+        **kwargs
+    ):
         self._prop_names = ['children', 'id', 'actor', 'colorDataRange', 'colorMapPreset', 'iSlice', 'jSlice', 'kSlice', 'mapper', 'property', 'xSlice', 'ySlice', 'zSlice']
-        self._type = 'SliceRepresentation'
-        self._namespace = 'dash_vtk'
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'actor', 'colorDataRange', 'colorMapPreset', 'iSlice', 'jSlice', 'kSlice', 'mapper', 'property', 'xSlice', 'ySlice', 'zSlice']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
-        _locals.update(kwargs)  # For wildcard attrs
+        _locals.update(kwargs)  # For wildcard attrs and excess named props
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
-        for k in []:
-            if k not in args:
-                raise TypeError(
-                    'Required argument `' + k + '` was not specified.')
+
         super(SliceRepresentation, self).__init__(children=children, **args)
+
+setattr(SliceRepresentation, "__init__", _explicitize_args(SliceRepresentation.__init__))

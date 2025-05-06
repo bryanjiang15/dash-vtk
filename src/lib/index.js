@@ -8,6 +8,8 @@ import GeometryRepresentation from './components/GeometryRepresentation.react';
 import GlyphRepresentation from './components/GlyphRepresentation.react';
 import ImageData from './components/ImageData.react';
 import Mesh from './components/Mesh.react';
+import Model from './components/Model.react';
+import Pick from './components/Pick.react';
 import PointCloudRepresentation from './components/PointCloudRepresentation.react';
 import PointData from './components/PointData.react';
 import PolyData from './components/PolyData.react';
@@ -30,6 +32,8 @@ export {
     GlyphRepresentation,
     ImageData,
     Mesh,
+    Model,
+    Pick,
     PointCloudRepresentation,
     PointData,
     PolyData,
