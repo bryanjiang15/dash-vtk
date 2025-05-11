@@ -1,21 +1,6 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-import typing  # noqa: F401
-from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
-
-ComponentType = typing.Union[
-    str,
-    int,
-    float,
-    Component,
-    None,
-    typing.Sequence[typing.Union[str, int, float, Component, None]],
-]
-
-NumberType = typing.Union[
-    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
-]
 
 
 class PointCloudRepresentation(Component):
@@ -75,25 +60,8 @@ Keyword arguments:
     _base_nodes = ['children']
     _namespace = 'dash_vtk'
     _type = 'PointCloudRepresentation'
-
-
-    def __init__(
-        self,
-        id: typing.Optional[typing.Union[str, dict]] = None,
-        xyz: typing.Optional[typing.Sequence[NumberType]] = None,
-        rgb: typing.Optional[typing.Sequence[NumberType]] = None,
-        rgba: typing.Optional[typing.Sequence[NumberType]] = None,
-        scalars: typing.Optional[typing.Sequence[NumberType]] = None,
-        colorMapPreset: typing.Optional[str] = None,
-        colorDataRange: typing.Optional[typing.Sequence[NumberType]] = None,
-        property: typing.Optional[dict] = None,
-        showCubeAxes: typing.Optional[bool] = None,
-        cubeAxesStyle: typing.Optional[dict] = None,
-        showScalarBar: typing.Optional[bool] = None,
-        scalarBarTitle: typing.Optional[str] = None,
-        scalarBarStyle: typing.Optional[dict] = None,
-        **kwargs
-    ):
+    @_explicitize_args
+    def __init__(self, id=Component.UNDEFINED, xyz=Component.UNDEFINED, rgb=Component.UNDEFINED, rgba=Component.UNDEFINED, scalars=Component.UNDEFINED, colorMapPreset=Component.UNDEFINED, colorDataRange=Component.UNDEFINED, property=Component.UNDEFINED, showCubeAxes=Component.UNDEFINED, cubeAxesStyle=Component.UNDEFINED, showScalarBar=Component.UNDEFINED, scalarBarTitle=Component.UNDEFINED, scalarBarStyle=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'colorDataRange', 'colorMapPreset', 'cubeAxesStyle', 'property', 'rgb', 'rgba', 'scalarBarStyle', 'scalarBarTitle', 'scalars', 'showCubeAxes', 'showScalarBar', 'xyz']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'colorDataRange', 'colorMapPreset', 'cubeAxesStyle', 'property', 'rgb', 'rgba', 'scalarBarStyle', 'scalarBarTitle', 'scalars', 'showCubeAxes', 'showScalarBar', 'xyz']
@@ -104,5 +72,3 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(PointCloudRepresentation, self).__init__(**args)
-
-setattr(PointCloudRepresentation, "__init__", _explicitize_args(PointCloudRepresentation.__init__))

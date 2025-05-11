@@ -3,12 +3,12 @@
 from dash.development.base_component import Component, _explicitize_args
 
 
-class Pick(Component):
-    """A Pick component.
-GeometryRepresentation is responsible to convert a vtkPolyData into rendering
+class PickGroup(Component):
+    """A PickGroup component.
+PickGroup is responsible for creating glyphs at specified pick positions
 It takes the following set of properties:
-  - actor: Properties to assign to the vtkActor
-  - mapper: Properties to assign to the vtkMapper
+  - axisIds: Array of axis ids to use for the pick group
+  - offsets: Array of offsets to use for the pick group
   - property: Properties to assign to the vtkProperty (actor.getProperty())
   - colorMapPreset: Name of the preset to use for controlling the color mapping
   - colorDataRange: Range to use for the color scale
@@ -23,7 +23,7 @@ Keyword arguments:
 - actor (dict; optional):
     Properties to set to the actor.
 
-- axisIds (list of numbers; optional)
+- axisIdList (list of list of numberss; optional)
 
 - colorDataRange (list of numbers; default [0, 1]):
     Data range use for the colorMap.
@@ -39,7 +39,7 @@ Keyword arguments:
 - mapper (dict; optional):
     Properties to set to the actor.
 
-- offsets (list of numbers; optional)
+- offsetList (list of list of numberss; optional)
 
 - property (dict; optional):
     Properties to set to the actor.property.
@@ -65,16 +65,16 @@ Keyword arguments:
     _children_props = []
     _base_nodes = ['children']
     _namespace = 'dash_vtk'
-    _type = 'Pick'
+    _type = 'PickGroup'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, actor=Component.UNDEFINED, mapper=Component.UNDEFINED, property=Component.UNDEFINED, colorMapPreset=Component.UNDEFINED, colorDataRange=Component.UNDEFINED, showCubeAxes=Component.UNDEFINED, cubeAxesStyle=Component.UNDEFINED, showScalarBar=Component.UNDEFINED, scalarBarTitle=Component.UNDEFINED, scalarBarStyle=Component.UNDEFINED, vtkClass=Component.UNDEFINED, vtkClassState=Component.UNDEFINED, axisIds=Component.UNDEFINED, offsets=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'actor', 'axisIds', 'colorDataRange', 'colorMapPreset', 'cubeAxesStyle', 'mapper', 'offsets', 'property', 'scalarBarStyle', 'scalarBarTitle', 'showCubeAxes', 'showScalarBar', 'vtkClass', 'vtkClassState']
+    def __init__(self, children=None, id=Component.UNDEFINED, actor=Component.UNDEFINED, mapper=Component.UNDEFINED, property=Component.UNDEFINED, colorMapPreset=Component.UNDEFINED, colorDataRange=Component.UNDEFINED, showCubeAxes=Component.UNDEFINED, cubeAxesStyle=Component.UNDEFINED, showScalarBar=Component.UNDEFINED, scalarBarTitle=Component.UNDEFINED, scalarBarStyle=Component.UNDEFINED, vtkClass=Component.UNDEFINED, vtkClassState=Component.UNDEFINED, axisIdList=Component.UNDEFINED, offsetList=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'actor', 'axisIdList', 'colorDataRange', 'colorMapPreset', 'cubeAxesStyle', 'mapper', 'offsetList', 'property', 'scalarBarStyle', 'scalarBarTitle', 'showCubeAxes', 'showScalarBar', 'vtkClass', 'vtkClassState']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'actor', 'axisIds', 'colorDataRange', 'colorMapPreset', 'cubeAxesStyle', 'mapper', 'offsets', 'property', 'scalarBarStyle', 'scalarBarTitle', 'showCubeAxes', 'showScalarBar', 'vtkClass', 'vtkClassState']
+        self.available_properties = ['children', 'id', 'actor', 'axisIdList', 'colorDataRange', 'colorMapPreset', 'cubeAxesStyle', 'mapper', 'offsetList', 'property', 'scalarBarStyle', 'scalarBarTitle', 'showCubeAxes', 'showScalarBar', 'vtkClass', 'vtkClassState']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
         _locals.update(kwargs)  # For wildcard attrs and excess named props
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
-        super(Pick, self).__init__(children=children, **args)
+        super(PickGroup, self).__init__(children=children, **args)

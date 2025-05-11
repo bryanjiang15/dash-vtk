@@ -9,6 +9,7 @@ from .ImageData import ImageData
 from .Mesh import Mesh
 from .Model import Model
 from .Pick import Pick
+from .PickGroup import PickGroup
 from .PointCloudRepresentation import PointCloudRepresentation
 from .PointData import PointData
 from .PolyData import PolyData
@@ -33,6 +34,7 @@ __all__ = [
     "Mesh",
     "Model",
     "Pick",
+    "PickGroup",
     "PointCloudRepresentation",
     "PointData",
     "PolyData",

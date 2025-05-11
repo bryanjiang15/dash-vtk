@@ -1,21 +1,6 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-import typing  # noqa: F401
-from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
-
-ComponentType = typing.Union[
-    str,
-    int,
-    float,
-    Component,
-    None,
-    typing.Sequence[typing.Union[str, int, float, Component, None]],
-]
-
-NumberType = typing.Union[
-    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
-]
 
 
 class GlyphRepresentation(Component):
@@ -53,19 +38,8 @@ Keyword arguments:
     _base_nodes = ['children']
     _namespace = 'dash_vtk'
     _type = 'GlyphRepresentation'
-
-
-    def __init__(
-        self,
-        children: typing.Optional[ComponentType] = None,
-        id: typing.Optional[typing.Union[str, dict]] = None,
-        actor: typing.Optional[dict] = None,
-        mapper: typing.Optional[dict] = None,
-        property: typing.Optional[dict] = None,
-        colorMapPreset: typing.Optional[str] = None,
-        colorDataRange: typing.Optional[typing.Sequence[NumberType]] = None,
-        **kwargs
-    ):
+    @_explicitize_args
+    def __init__(self, children=None, id=Component.UNDEFINED, actor=Component.UNDEFINED, mapper=Component.UNDEFINED, property=Component.UNDEFINED, colorMapPreset=Component.UNDEFINED, colorDataRange=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'actor', 'colorDataRange', 'colorMapPreset', 'mapper', 'property']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'actor', 'colorDataRange', 'colorMapPreset', 'mapper', 'property']
@@ -76,5 +50,3 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
         super(GlyphRepresentation, self).__init__(children=children, **args)
-
-setattr(GlyphRepresentation, "__init__", _explicitize_args(GlyphRepresentation.__init__))

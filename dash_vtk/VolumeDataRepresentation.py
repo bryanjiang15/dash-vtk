@@ -1,21 +1,6 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-import typing  # noqa: F401
-from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
-
-ComponentType = typing.Union[
-    str,
-    int,
-    float,
-    Component,
-    None,
-    typing.Sequence[typing.Union[str, int, float, Component, None]],
-]
-
-NumberType = typing.Union[
-    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
-]
 
 
 class VolumeDataRepresentation(Component):
@@ -83,28 +68,8 @@ Keyword arguments:
     _base_nodes = ['children']
     _namespace = 'dash_vtk'
     _type = 'VolumeDataRepresentation'
-
-
-    def __init__(
-        self,
-        id: typing.Optional[typing.Union[str, dict]] = None,
-        dimensions: typing.Optional[typing.Sequence[NumberType]] = None,
-        spacing: typing.Optional[typing.Sequence[NumberType]] = None,
-        origin: typing.Optional[typing.Sequence[NumberType]] = None,
-        rgb: typing.Optional[typing.Sequence[NumberType]] = None,
-        rgba: typing.Optional[typing.Sequence[NumberType]] = None,
-        scalars: typing.Optional[typing.Sequence[NumberType]] = None,
-        scalarsType: typing.Optional[str] = None,
-        mapper: typing.Optional[dict] = None,
-        volume: typing.Optional[dict] = None,
-        property: typing.Optional[dict] = None,
-        colorMapPreset: typing.Optional[str] = None,
-        volumeController: typing.Optional[bool] = None,
-        controllerSize: typing.Optional[typing.Sequence[NumberType]] = None,
-        rescaleColorMap: typing.Optional[bool] = None,
-        colorDataRange: typing.Optional[typing.Union[typing.Sequence[NumberType], str]] = None,
-        **kwargs
-    ):
+    @_explicitize_args
+    def __init__(self, id=Component.UNDEFINED, dimensions=Component.UNDEFINED, spacing=Component.UNDEFINED, origin=Component.UNDEFINED, rgb=Component.UNDEFINED, rgba=Component.UNDEFINED, scalars=Component.UNDEFINED, scalarsType=Component.UNDEFINED, mapper=Component.UNDEFINED, volume=Component.UNDEFINED, property=Component.UNDEFINED, colorMapPreset=Component.UNDEFINED, volumeController=Component.UNDEFINED, controllerSize=Component.UNDEFINED, rescaleColorMap=Component.UNDEFINED, colorDataRange=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'colorDataRange', 'colorMapPreset', 'controllerSize', 'dimensions', 'mapper', 'origin', 'property', 'rescaleColorMap', 'rgb', 'rgba', 'scalars', 'scalarsType', 'spacing', 'volume', 'volumeController']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'colorDataRange', 'colorMapPreset', 'controllerSize', 'dimensions', 'mapper', 'origin', 'property', 'rescaleColorMap', 'rgb', 'rgba', 'scalars', 'scalarsType', 'spacing', 'volume', 'volumeController']
@@ -115,5 +80,3 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(VolumeDataRepresentation, self).__init__(**args)
-
-setattr(VolumeDataRepresentation, "__init__", _explicitize_args(VolumeDataRepresentation.__init__))

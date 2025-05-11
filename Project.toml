@@ -1,6 +1,6 @@
 
 name = "DashVtk"
-uuid = "1b08a953-4be3-4667-9a23-9d861c9a3a1d"
+uuid = "1b08a953-4be3-4667-9a23-818b1eccd4c7"
 authors = ["Kitware Inc <sebastien.jourdain@kitware.com> and Plotly Technologies <xinghan@plot.ly>"]
 version = "0.0.9"
 

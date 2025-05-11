@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { GeometryRepresentation as VtkItem, Algorithm, View } from '../AsyncReactVTK.js';
 import Pick from './Pick.react.js';
 import { ModelPointsContext } from '../contexts/ModelPointsContext.js';
+import PickGroup from './PickGroup.react.js';
 /**
  * GeometryRepresentation is responsible to convert a vtkPolyData into rendering
  * It takes the following set of properties:
@@ -17,22 +18,18 @@ import { ModelPointsContext } from '../contexts/ModelPointsContext.js';
 
 
 export default function Model(props) {
-  const [modelPoints, setModelPoints] = useState(ReshapeModelPoints(window.dash_component_api.getLayout(props.children.props.componentPath).props.points));
+  const [modelPoints, setModelPoints] = useState(ReshapeModelPoints(props.children.props._dashprivate_layout.props.points));
 
-  useEffect(() => {
-    
-    const layout = window.dash_component_api.getLayout(props.children.props.componentPath);
-    const points = layout.props.points;    
-    setModelPoints(ReshapeModelPoints(points));
+  useEffect(() => {  
+    setModelPoints(ReshapeModelPoints(props.children.props._dashprivate_layout.props.points));
   }, [props.children.props]);
 
   function renderPicks() {
     return props.picks.map((pick) => {
-      console.log('Pick', window.dash_component_api.getLayout(pick.props.componentPath));
       
-      const pickProps = window.dash_component_api.getLayout(pick.props.componentPath).props;
+      const pickProps = pick.props._dashprivate_layout.props;
       
-      return <Pick {...pickProps} key={pickProps.id} />;
+      return <PickGroup {...pickProps} key={pickProps.id} />;
     });
   }
 
@@ -56,7 +53,7 @@ Model.defaultProps = {
   scalarBarTitle: '',
 };
 
-Model.dashChildrenUpdate = true;
+// Model.dashChildrenUpdate = true;
 
 Model.propTypes = {
   /**
@@ -138,24 +135,4 @@ function ReshapeModelPoints(points) {
     reshapedPoints.push([points[i], points[i + 1], points[i + 2]]);
   }
   return reshapedPoints;
-}
-
-function PickWrapper({props, position}) {
-  const [pickProps, setPickProps] = useState(window.dash_component_api.getLayout(props.props.componentPath).props);
-
-  useEffect(() => {
-    // If props contains state, set the center property to the position
-    if (pickProps.vtkClassState) {
-      pickProps.vtkClassState.center = position;
-    } else {
-      pickProps.vtkClassState = {
-        ...pickProps.vtkClassState,
-        center: position,
-      };
-    }
-    setPickProps(pickProps);
-    
-  }, [position]); // Trigger when position changes
-
-  return <Pick {...pickProps} />;
 }

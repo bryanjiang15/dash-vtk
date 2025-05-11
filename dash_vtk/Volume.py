@@ -1,21 +1,6 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-import typing  # noqa: F401
-from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
-
-ComponentType = typing.Union[
-    str,
-    int,
-    float,
-    Component,
-    None,
-    typing.Sequence[typing.Union[str, int, float, Component, None]],
-]
-
-NumberType = typing.Union[
-    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
-]
 
 
 class Volume(Component):
@@ -38,15 +23,8 @@ Keyword arguments:
     _base_nodes = ['children']
     _namespace = 'dash_vtk'
     _type = 'Volume'
-
-
-    def __init__(
-        self,
-        id: typing.Optional[typing.Union[str, dict]] = None,
-        port: typing.Optional[NumberType] = None,
-        state: typing.Optional[dict] = None,
-        **kwargs
-    ):
+    @_explicitize_args
+    def __init__(self, id=Component.UNDEFINED, port=Component.UNDEFINED, state=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'port', 'state']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'port', 'state']
@@ -57,5 +35,3 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(Volume, self).__init__(**args)
-
-setattr(Volume, "__init__", _explicitize_args(Volume.__init__))

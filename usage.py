@@ -1,6 +1,6 @@
 import dash_vtk
 import dash
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 from dash import html, callback, no_update
 
 import dash_vtk.Pick
@@ -56,7 +56,7 @@ app.layout = html.Div(
                     children=[
                         dash_vtk.PolyData(
                             id="square",
-                            points=[0, 0, 0, 10, 0, 0, 10, 10, 0, 0, 10, 0],
+                            points=[0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0],
                             polys=[4, 0, 1, 2, 3],
                             children=[
                                 dash_vtk.PointData(
@@ -70,44 +70,54 @@ app.layout = html.Div(
                         ),
                     ],
                     picks=[
-                        dash_vtk.Pick(
-                            id=f"pick1",
-                            vtkClass = "vtkSphereSource",
-                            vtkClassState = {
-                                "radius": 0.1,
-                            },
-                            axisIds=[0, 1, 3],
-                            offsets=[0, 0, 0],
-                        ),
-                        dash_vtk.Pick(
-                            id=f"pick2",
-                            vtkClass = "vtkSphereSource",
-                            vtkClassState = {
-                                "radius": 0.1,
-                            },
-                            axisIds=[1, 2, 3],
-                            offsets=[0, 0, 0],
-                        ),
-                        dash_vtk.Pick(
-                            id=f"pick3",
-                            vtkClass = "vtkSphereSource",
-                            vtkClassState = {
-                                "radius": 0.1,
-                            },
-                            axisIds=[2, 3, 0],
-                            offsets=[0, 0, 0],
-                        ),
-                        dash_vtk.Pick(
-                            id=f"pick4",
-                            vtkClass = "vtkSphereSource",
-                            vtkClassState = {
-                                "radius": 0.1,
-                            },
-                            axisIds=[3, 0, 1],
-                            offsets=[0, 0, 0],
-                        ),
+                        dash_vtk.PickGroup(
+                            id="picks",
+                            axisIdList=[[0, 1, 3] for i in range(100)],
+                            offsetList=[[0, 0+i/100, 0] for i in range(100)],
+                        )
                     ]
                 ),
+                # html.Div(
+                #     id="picks",
+                #     children=[
+                #         dash_vtk.GeometryRepresentation(
+                #             id=f"Pick1",
+                #             children=[
+                #                 dash_vtk.Algorithm(
+                #                     vtkClass="vtkSphereSource",
+                #                     state={"center": [1, 0, 0], "radius": 0.1},
+                #                 )
+                #             ]
+                #         ),
+                #         dash_vtk.GeometryRepresentation(
+                #             id=f"Pick2",
+                #             children=[
+                #                 dash_vtk.Algorithm(
+                #                     vtkClass="vtkSphereSource",
+                #                     state={"center": [0, 0, 0], "radius": 0.1},
+                #                 )
+                #             ]
+                #         ),
+                #         dash_vtk.GeometryRepresentation(
+                #             id=f"Pick3",
+                #             children=[
+                #                 dash_vtk.Algorithm(
+                #                     vtkClass="vtkSphereSource",
+                #                     state={"center": [0, 1, 0], "radius": 0.1},
+                #                 )
+                #             ]
+                #         ),
+                #         dash_vtk.GeometryRepresentation(
+                #             id=f"Pick4",
+                #             children=[
+                #                 dash_vtk.Algorithm(
+                #                     vtkClass="vtkSphereSource",
+                #                     state={"center": [0, 0, 1], "radius": 0.1},
+                #                 )
+                #             ]
+                #         ),
+                #     ]
+                # )
             ],
         ),
         html.Div(id="output"),
@@ -116,12 +126,12 @@ app.layout = html.Div(
 
 @callback(
     Output("square", "points"),
-    Output("view", "focalPoint"),
     Input("view", "clickInfo"),
 )
 def move_square(click_info):
     if click_info is None:
-        return no_update, no_update
+        return no_update
+    print(click_info)
 
     # Extract the click position
     x, y, z = click_info.get("worldPosition", [0, 0, 0])
@@ -133,7 +143,8 @@ def move_square(click_info):
         x + 1, y + 1, z,
         x, y + 1, z,
     ]
-    return no_update, [x, y, z]
+
+    return new_points
 
 if __name__ == "__main__":
     app.run(debug=True)

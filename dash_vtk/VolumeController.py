@@ -1,21 +1,6 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-import typing  # noqa: F401
-from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
-
-ComponentType = typing.Union[
-    str,
-    int,
-    float,
-    Component,
-    None,
-    typing.Sequence[typing.Union[str, int, float, Component, None]],
-]
-
-NumberType = typing.Union[
-    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
-]
 
 
 class VolumeController(Component):
@@ -36,15 +21,8 @@ Keyword arguments:
     _base_nodes = ['children']
     _namespace = 'dash_vtk'
     _type = 'VolumeController'
-
-
-    def __init__(
-        self,
-        id: typing.Optional[typing.Union[str, dict]] = None,
-        size: typing.Optional[typing.Sequence[NumberType]] = None,
-        rescaleColorMap: typing.Optional[bool] = None,
-        **kwargs
-    ):
+    @_explicitize_args
+    def __init__(self, id=Component.UNDEFINED, size=Component.UNDEFINED, rescaleColorMap=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'rescaleColorMap', 'size']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['id', 'rescaleColorMap', 'size']
@@ -55,5 +33,3 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args}
 
         super(VolumeController, self).__init__(**args)
-
-setattr(VolumeController, "__init__", _explicitize_args(VolumeController.__init__))

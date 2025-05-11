@@ -10,6 +10,7 @@ import ImageData from './components/ImageData.react';
 import Mesh from './components/Mesh.react';
 import Model from './components/Model.react';
 import Pick from './components/Pick.react';
+import PickGroup from './components/PickGroup.react';
 import PointCloudRepresentation from './components/PointCloudRepresentation.react';
 import PointData from './components/PointData.react';
 import PolyData from './components/PolyData.react';
@@ -34,6 +35,7 @@ export {
     Mesh,
     Model,
     Pick,
+    PickGroup,
     PointCloudRepresentation,
     PointData,
     PolyData,

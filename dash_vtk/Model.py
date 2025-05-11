@@ -1,21 +1,6 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-import typing  # noqa: F401
-from typing_extensions import TypedDict, NotRequired, Literal # noqa: F401
 from dash.development.base_component import Component, _explicitize_args
-
-ComponentType = typing.Union[
-    str,
-    int,
-    float,
-    Component,
-    None,
-    typing.Sequence[typing.Union[str, int, float, Component, None]],
-]
-
-NumberType = typing.Union[
-    typing.SupportsFloat, typing.SupportsInt, typing.SupportsComplex
-]
 
 
 class Model(Component):
@@ -75,25 +60,8 @@ Keyword arguments:
     _base_nodes = ['picks', 'picks', 'children']
     _namespace = 'dash_vtk'
     _type = 'Model'
-
-
-    def __init__(
-        self,
-        children: typing.Optional[ComponentType] = None,
-        id: typing.Optional[typing.Union[str, dict]] = None,
-        actor: typing.Optional[dict] = None,
-        mapper: typing.Optional[dict] = None,
-        property: typing.Optional[dict] = None,
-        colorMapPreset: typing.Optional[str] = None,
-        colorDataRange: typing.Optional[typing.Sequence[NumberType]] = None,
-        showCubeAxes: typing.Optional[bool] = None,
-        cubeAxesStyle: typing.Optional[dict] = None,
-        showScalarBar: typing.Optional[bool] = None,
-        scalarBarTitle: typing.Optional[str] = None,
-        scalarBarStyle: typing.Optional[dict] = None,
-        picks: typing.Optional[typing.Union[typing.Sequence[ComponentType], ComponentType]] = None,
-        **kwargs
-    ):
+    @_explicitize_args
+    def __init__(self, children=None, id=Component.UNDEFINED, actor=Component.UNDEFINED, mapper=Component.UNDEFINED, property=Component.UNDEFINED, colorMapPreset=Component.UNDEFINED, colorDataRange=Component.UNDEFINED, showCubeAxes=Component.UNDEFINED, cubeAxesStyle=Component.UNDEFINED, showScalarBar=Component.UNDEFINED, scalarBarTitle=Component.UNDEFINED, scalarBarStyle=Component.UNDEFINED, picks=Component.UNDEFINED, **kwargs):
         self._prop_names = ['children', 'id', 'actor', 'colorDataRange', 'colorMapPreset', 'cubeAxesStyle', 'mapper', 'picks', 'property', 'scalarBarStyle', 'scalarBarTitle', 'showCubeAxes', 'showScalarBar']
         self._valid_wildcard_attributes =            []
         self.available_properties = ['children', 'id', 'actor', 'colorDataRange', 'colorMapPreset', 'cubeAxesStyle', 'mapper', 'picks', 'property', 'scalarBarStyle', 'scalarBarTitle', 'showCubeAxes', 'showScalarBar']
@@ -104,5 +72,3 @@ Keyword arguments:
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
         super(Model, self).__init__(children=children, **args)
-
-setattr(Model, "__init__", _explicitize_args(Model.__init__))
