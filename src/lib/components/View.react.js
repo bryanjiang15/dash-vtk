@@ -17,27 +17,27 @@ export default function View(props) {
   const viewRef = useRef();
   const [vtkCamera, setVtkCamera] = useState(null);
 
-  useEffect(() => {
-    const initializeCamera = async () => {
-      while (!viewRef.current) {
-        await new Promise(resolve => setTimeout(resolve, 50)); // Wait for 50ms
-      }
+  // useEffect(() => {
+  //   const initializeCamera = async () => {
+  //     while (!viewRef.current) {
+  //       await new Promise(resolve => setTimeout(resolve, 50)); // Wait for 50ms
+  //     }
 
-      const camera = viewRef.current.camera;
-      setVtkCamera(camera);
-    };
-    initializeCamera();
-  }, []);
+  //     const camera = viewRef.current.camera;
+  //     setVtkCamera(camera);
+  //   };
+  //   initializeCamera();
+  // }, []);
 
-  useEffect(() => {
-    if (props.focalPoint && vtkCamera) {
-      vtkCamera.setFocalPoint(...props.focalPoint);
-      // Trigger a render
-      const renderWindow = viewRef.current.renderWindow;
+  // useEffect(() => {
+  //   if (props.focalPoint && vtkCamera) {
+  //     vtkCamera.setFocalPoint(...props.focalPoint);
+  //     // Trigger a render
+  //     const renderWindow = viewRef.current.renderWindow;
       
-      renderWindow.render();
-    }
-  }, [props.focalPoint, vtkCamera]);
+  //     renderWindow.render();
+  //   }
+  // }, [props.focalPoint, vtkCamera]);
 
   return <React.Suspense fallback={null}><VtkItem {...props} ref={viewRef}/></React.Suspense>;
 };
